@@ -1,0 +1,94 @@
+<!-- admin_panel.html -->
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Admin Panel</title>
+</head>
+<body>
+    <style type="text/css">
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #16a085;
+            margin: 0;
+            padding: 0;
+        }
+        
+        h1 {
+            color: #fff;
+            text-align: center;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        
+        th, td {
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+            text-align: left;
+        }
+        
+        th {
+            background-color: #f2f2f2;
+        }
+        
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        
+        td button {
+            background-color: #dc3545;
+            color: white;
+            border: none;
+            padding: 8px 12px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        
+        td button:hover {
+            background-color: #c82333;
+        }
+        
+        </style>
+    <h1>Admin Panel - Users and Access Keys</h1>
+    <table>
+        <tr>
+            <th>User ID</th>
+            <th>Username</th>
+            <th>Email</th>
+            <th>Access Key</th>
+            <th>Key Status</th>
+            <th>Revoke Access Key</th>
+        </tr>
+        {% for item in users_with_keys %}
+        <tr>
+            <td>{{ item.user.id }}</td>
+            <td>{{ item.user.username }}</td>
+            <td>{{ item.user.email }}</td>
+            <td>{% if item.access_key.is_active %}Active{% else %}Inactive{% endif %}</td>
+            <td>{% if item.access_key %}
+                {{ item.access_key.key }}
+            {% else %}
+                N/A
+            {% endif %}
+            </td>
+            <td>
+                {% if item.access_key %}
+                <form action="{% url 'toggle_access_key_status' item.access_key.id %}" method="post">
+                    {% csrf_token %}
+                    <button type="submit">Revoke</button>
+                </form>
+                {% endif %}
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+    <p>Need to find info about a specific school <a href="{%url 'school_integration_endpoint'%}">Find it here</a></p>
+
+    <a href="{% url 'signout' %}">Sign out</a>
+</body>
+</html>

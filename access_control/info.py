@@ -1,0 +1,4 @@
+
+
+# SMTP configuration for Gmail
+
