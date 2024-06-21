@@ -162,7 +162,7 @@
             {% if access_key_instance is None %}
                 <h2>Hello, {{ user.first_name }}</h2>
                 <p>Welcome to the Access Key generating site. Click the link below to buy your access key.</p>
-                <a href="/generate_access_key" class="btn btn-primary">Buy Now!</a>
+                <a href="/generate_access_key" class="btn btn-primary">Generate Key</a>
             {% else %}
                 <h2>Hello, {{ user.first_name }}</h2>
                 <div class="access-details">
@@ -176,6 +176,6 @@
         </div>
         <a href='/signout' class="signout-link">Signout</a>
     {% endif %}
-</div>
+</div> 
 </body>
 </html>
