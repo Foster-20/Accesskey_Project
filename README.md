@@ -69,7 +69,7 @@ The Access Control System is a web application designed to manage access keys fo
 2. It would a json respons which you can then latter use 
 
 ## Contributors
-- mr-kwansa [https://github.com/mr-kwansa]
+- Foster [https://github.com/Foster-20]
 
 ## You can find a live version of this project at:
 -[https://access-control-3rwo.onrender.com]
